@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <title>Title</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
+    <style>
+        .pre-scrollable{
+            height:500px;
+            overflow-y: scroll;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>GPA Calculator</h1>
+<div>
+    <div class="col-md-6 offset-3">
+        <form method="post" th:action="@{/}">
+
+            <div>
+                <label>Student Number: </label>
+                <br>
+                <input class="form-control" type="number" placeholder="Student Number">
+            </div>
+            <div>
+                <label>Student Name: </label>
+                <br>
+                <input class="form-control" type="text" name="name"
+                       >
+            </div>
+            <div>
+                <label>Course Number: </label>
+                <br>
+                <input class="form-control" type="text" placeholder="Course Number">
+            </div>
+            <div>
+                <label>Student Number: </label>
+                <br>
+                <input class="form-control" type="number" placeholder="Student Number">
+            </div>
+            <div>
+                <label>Units: </label>
+                <br>
+                <input class="form-control" type="number" placeholder="Units">
+            </div>
+            <div>
+                <label>Grade: </label>
+                <br>
+                <select class="form-select" >
+
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                </select>
+
+
+            </div>
+
+            <button type="submit"  class="btn btn-primary" th:href="@{/}">Save</button>
+        </form>
+    </div>
+
+</div>
+<div class="container mt-2 pre-scrollable">
+    <div class="card-header">Student List </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Student Number</th><th>Student Name</th><th>Course Number</th><th>Units</th><th>Grade</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p:${listStudents}">
+                <td th:text="${p.getNumber()}"></td>
+                <td th:text="${p.getName()}"></td>
+                <td th:text="${p.getCourseNumber()}"></td>
+                <td th:text="${p.getUnits()}"></td>
+                <td th:text="${p.getGrade()}"></td>
+                <td>
+                    <a class="btn btn-danger">Delete</a>
+                </td>
+                <td>
+                    <a class="btn btn-success">Edit</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</section>
+</body>
+</html>
